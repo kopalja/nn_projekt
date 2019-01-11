@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 #### Virat
 ### Visor
 ### http://clickdamage.com/sourcecode/cv_datasets.php
-
+#test
 
 
 training_data, mnist_validation_data, test_data = load_data()
