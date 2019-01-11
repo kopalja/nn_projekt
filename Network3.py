@@ -146,12 +146,12 @@ class Batch_Network(Network):
             start = time.time()
             for index in range(self.__number_of_training_batches):
                 out = self.__train_by_minibatch(index)
-            print(np.mean(out[0]))
             end = time.time()
-            print("epoch time ", end - start)
+            print("Epoch time ", end - start)
+            print(f'Loss: {out}')
         
             current_validation = np.mean( [ self.__validate(i) for i in range(self.__number_of_validation_batches) ] )
-            print("Epoch {0}: {1:.2%}".format(i, current_validation))
+            print("Epoch {0}: accuracy {1:.2%}".format(i, current_validation))
             if (current_validation > best_validation):
                 best_validation = current_validation
                 DnnLoader.Save(self.__save_to_file, self._layers)

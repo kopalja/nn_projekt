@@ -4,7 +4,6 @@ import gzip
 import numpy as np
 
 
-import cv2
 from os import listdir
 from os.path import isfile, join
 from PIL import Image
