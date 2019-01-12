@@ -30,7 +30,7 @@ model = keras.Sequential()
 
 model.add(keras.layers.InputLayer(input_shape = [height, width, 1]))
 
-model.add(keras.layers.Conv2D(filters = 32, kernel_size = 5, strides = 2, activation = 'relu'))
+model.add(keras.layers.Conv2D(filters = 32, kernel_size = 5, padding = 'same', strides = 2, activation = 'relu'))
 model.add(keras.layers.MaxPool2D(pool_size = (2, 2), padding = 'same'))
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.Dropout(0.4))
@@ -65,19 +65,17 @@ for i in range(epoch_count):
     valid_loss.append(perf_valid[0])
     valid_acc.append(perf_valid[1])
     print(f"Validation loss = {perf_valid[0] :1.4}")
-    print(f"Validation accuracy = {perf_valid[1] :1.4}")
-
+    print(f"Validation accuracy = {perf_valid[1]*100 :2.2f}%")
 
 plt.legend(['Loss', 'Accuracy'])
 plt.plot(train_loss)
 plt.plot(train_acc)
-plt.savefig(f'graphs/train-{time.strftime("%x-%X")}.svg')
-plt.savefig(f'graphs/train-{time.strftime("%x-%X")}.png')
+time_str = time.strftime('%d-%m-%H:%M')
+plt.savefig(f'graphs/train-{time_str}.svg')
+plt.savefig(f'graphs/train-{time_str}.png')
 plt.clf()
 
 plt.plot(valid_loss)
 plt.plot(valid_acc)
-plt.savefig(f'graphs/test-{time.strftime("%x-%X")}.png')
-plt.savefig(f'graphs/test-{time.strftime("%x-%X")}.svg')
-
-
+plt.savefig(f'graphs/test-{time_str}.png')
+plt.savefig(f'graphs/test-{time_str}.svg')
